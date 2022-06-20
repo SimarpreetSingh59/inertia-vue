@@ -2,24 +2,28 @@
         <app-header></app-header>
 
         <div class="row">
-            <div class="col-md-12" style="margin-top: 20px">
+            <div class="col" style="margin-top: 20px">
                 <h2 class="text-left">All Posts</h2>
 
                 <errors-and-messages :errors="errors"></errors-and-messages>
+                <div v-if="posts.data.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col col-md-4 mt-2" v-for="post in posts.data" :key="post.id">
+                                <div class="card h-100 d-flex align-items-center p-2">
+                                    <img v-if="post.image_url" width="300" height="250" :src="post.image_url" class="pull-left img-responsive margin10 thumb img-thumbnail">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{post.title}}</h5>
+                                        <p class="card-text">T{{post.content}}</p>
 
-                <div v-if="posts.data.length > 0">
-
-                    <div class="col-md-10 article" v-for="post in posts.data" :key="post.id">
-                        <h4>{{post.title}}</h4>
-                        <img v-if="post.image_url" width="300" height="250" :src="post.image_url" class="pull-left img-responsive thumb margin10 img-thumbnail">
-                        <article>
-                            <p>
-                                {{ post.content }}
-                            </p>
-                        </article>
-                        <inertia-link :href="$route('post.edit', {id: post.id})" class="btn btn-primary pull-right action-btn">Edit Post</inertia-link>
-                        <a href="javascript:void(0);" class="btn btn-warning pull-right action-btn" @click.prevent="deletePost(post.id)"><i class="fas fa-trash-alt"></i> Delete Post</a>
-                    </div>
+                                        <div>
+                                            <a :href="$route('post.edit', {id: post.id})" class="btn btn-primary pull-right action-btn">Edit Post</a>
+                                            <a href="javascript:void(0);" class="btn btn-warning pull-right action-btn" @click.prevent="deletePost(post.id)"><i class="fas fa-trash-alt"></i> Delete Post</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Last updated {{post.updated_at}}</small>
+                                    </div>
+                                </div>
+                        </div>    
 
                     <!-- Pagination links-->
                     <nav aria-label="Page navigation" v-if="posts.total > posts.per_page" style="margin-top: 20px">
@@ -41,6 +45,7 @@
                         </ul>
                     </nav>
                 </div>
+                
                 <div class="text-center" v-else>
                     No posts found! <inertia-link :href="$route('post.create')">Create Post</inertia-link>
                 </div>

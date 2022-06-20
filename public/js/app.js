@@ -18230,7 +18230,7 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "row"
+  "class": "row mb-5"
 };
 var _hoisted_2 = {
   "class": "col",

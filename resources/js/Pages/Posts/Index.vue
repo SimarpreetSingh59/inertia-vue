@@ -1,7 +1,7 @@
 <template>
         <app-header></app-header>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col" style="margin-top: 20px">
                 <h2 class="text-left">All Posts</h2>
 

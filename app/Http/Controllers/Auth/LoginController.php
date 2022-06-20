@@ -14,7 +14,7 @@ class LoginController extends Controller
         return Inertia::render('Auth/Login');
     }
 
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $this->validate($request, [
             'email' => ['required', 'email'],
@@ -24,7 +24,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect('/');
         }
 
         return back()->withErrors([

@@ -22,7 +22,7 @@
                     <input type="password" name="password" class="form-control" id="password" v-model="form.password" />
                 </div>
 
-                <input type="submit" class="btn btn-primary-btn-block" value="Register" />
+                <input type="submit" class="btn btn-primary btn-block" as="button" value="Register" />
 
             </form>
         </div>

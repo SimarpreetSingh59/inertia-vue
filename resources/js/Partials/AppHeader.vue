@@ -25,11 +25,13 @@
                     <li class="nav-item" v-if="!user">
                         <a :href="$route('showRegisterForm')" class="nav-link">Register</a>
                     </li>
-                    <li class="nav-item" v-if="user">
+                    <li class="nav-item d-flex" v-if="user">
                         <span class="navbar-text" v-if="user">
                             Logged in as {{user.name}}
                         </span>
-                        <a :href="$route('logout')" as="button" method="post" class="nav-link logout-link" style="display: inline" type="button">Logout</a>
+                         <form method="POST" action='logout'>
+                            <button class="nav-link logout-link" style="display: inline" type="submit">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
